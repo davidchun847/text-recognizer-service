@@ -1,0 +1,47 @@
+# Data
+/data/
+/app/wandb/
+!/data/raw
+
+# Logs
+/workspace
+/wandb
+
+# Editors
+.vscode
+
+# Node
+node_modules
+
+# Python
+__pycache__
+.pytest_cache
+.ipynb_checkpoints
+
+# Memo
+/setup_memo.txt
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Misc
+.DS_Store
+_labs
+logs
+.mypy_cache
+

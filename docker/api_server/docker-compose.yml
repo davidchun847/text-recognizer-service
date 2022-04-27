@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  api_server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    volumes:
+      - ../../app:/src
+      - ../../data:/data
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "8000:8000"
+    command: [ "python", "/src/servers/api_server.py" ]
