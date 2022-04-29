@@ -58,7 +58,7 @@ def get_pt_from_config(project_name):
     dir_config = get_config_dir(project_name)
     fnames_pt = [Path(x).name for x in dir_config.glob("*.pt")]
     if fnames_pt:
-        path_pt = Path(get_ckpt_dir(), fnames_pt[0])
+        path_pt = Path(dir_config, fnames_pt[0])
         pathutils.check_is_file(path_pt)
         return path_pt
     else:

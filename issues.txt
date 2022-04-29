@@ -1,0 +1,139 @@
+2022-04-28 19:34:20,960:INFO:logger_io_base.py:36:project_name: para_text_recognizer
+2022-04-28 19:34:20,961:INFO:logger_io_base.py:39:time run: 2022,04,28:19,34,20
+2022-04-28 19:34:20,961:INFO:logger_io_base.py:41:workspace: C:\Users\ch\Documents\code\code\myWorks\text-recognizer-service\workspace\trains\para_text_recognizer\220428_193420_cxkwfv
+2022-04-28 19:34:20,961:INFO:logger_io_base.py:43:args:
+2022-04-28 19:34:20,961:INFO:logger_io_base.py:44:Namespace(accelerator='dp', accumulate_grad_batches=4, amp_backend='native', amp_level='O2', augment_data=True, auto_lr_find=False, auto_scale_batch_size=False, auto_select_gpus=True, batch_size=16, benchmark=False, check_val_every_n_epoch=10, checkpoint_callback=True, ckpt_load_from='ckpt', ckpt_load_is_max=False, ckpt_load_key='val_loss', ckpt_monitor='val_loss', ckpt_monitor_mode='min', conv_dim=32, data_class='IAMOriginalAndSyntheticParagraphs', deterministic=False, early_stop_mode='min', early_stop_patience=-1, fast_dev_run=False, fc_dim=512, flush_logs_every_n_steps=100, gpus=1, gradient_clip_val=0, limit_output_length=False, limit_predict_batches=1, limit_test_batches=1, limit_train_batches=1, limit_val_batches=1, log_every_n_steps=50, logger=True, loss='transformer', lr=0.0001, max_epochs=10000, model_class='ResnetTransformer', move_metrics_to_cpu=False, multiple_trainloader_mode='max_size_cycle', num_nodes=1, num_sanity_val_steps=2, num_workers=24, one_cycle_total_steps=100, optimizer='Adam', overfit_batches=0, precision=32, prepare_data_per_node=True, process_position=0, progress_bar_refresh_rate=1, reload_dataloaders_every_epoch=False, replace_sampler_ddp=True, stochastic_weight_avg=False, sync_batchnorm=False, terminate_on_nan=True, test_only=False, tf_dim=256, tf_dropout=0.4, tf_fc_dim=256, tf_layers=4, tf_nhead=4, track_grad_norm=-1, val_check_interval=1, wandb=True, wandb_offline=True, weights_summary='full', window_stride=8, window_width=16)
+2022-04-28 19:34:25,324:INFO:logger_io_base.py:29:tune start
+2022-04-28 19:34:25,324:INFO:logger_io_base.py:29:fit start
+2022-04-28 21:36:46,270:ERROR:logger_io_base.py:49:Traceback (most recent call last):
+  File "c:\Users\ch\Documents\code\code\myWorks\text-recognizer-service\app\trains\para_text_recognizer_train.py", line 54, in main
+    trainer_set.tune_fit_test_save(lit_model=lit_model, data=data)
+  File "C:\Users\ch\Documents\code\code\myWorks\text-recognizer-service\app\services\trainers\pl_trainer_set.py", line 84, in tune_fit_test_save
+    self._trainer.fit(lit_model, datamodule=data)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\trainer.py", line 499, in fit
+    self.dispatch()
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\trainer.py", line 546, in dispatch
+    self.accelerator.start_training(self)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\accelerators\accelerator.py", line 73, in start_training
+    self.training_type_plugin.start_training(trainer)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\plugins\training_type\training_type_plugin.py", line 114, in start_training
+    self._results = trainer.run_train()
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\trainer.py", line 637, in run_train
+    self.train_loop.run_training_epoch()
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\training_loop.py", line 577, in run_training_epoch
+    self.trainer.run_evaluation(on_epoch=True)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\trainer.py", line 751, in run_evaluation
+    self.evaluation_loop.on_evaluation_end()
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\evaluation_loop.py", line 100, in on_evaluation_end
+    self.trainer.call_hook('on_validation_end', *args, **kwargs)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\trainer.py", line 1091, in call_hook
+    trainer_hook(*args, **kwargs)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\callback_hook.py", line 185, in on_validation_end
+    callback.on_validation_end(self, self.lightning_module)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\callbacks\early_stopping.py", line 162, in on_validation_end
+    self._run_early_stopping_check(trainer, pl_module)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\callbacks\early_stopping.py", line 173, in _run_early_stopping_check
+    or not self._validate_condition_metric(logs)  # short circuit if metric not present
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\callbacks\early_stopping.py", line 132, in _validate_condition_metric
+    raise RuntimeError(error_msg)
+RuntimeError: Early stopping conditioned on metric `early_stop_on` which is not available. Pass in or modify your `EarlyStopping` callback to use any of the following: `val_loss`, `val_cer`, `train_loss`
+
+add early stop arg monitor
+
+
+loae_from_checkpoint error_msg
+git lfs
+
+
+C:\Users\ch\Documents\code\code\myWorks\text-recognizer-service\app
+Traceback (most recent call last):
+  File "c:\Users\ch\Documents\code\code\myWorks\text-recognizer-service\app\predicts\para_text_recognizer_pred.py", line 61, in <module>
+    project_name, logger_py=logger_py, args_config=args_config
+  File "c:\Users\ch\Documents\code\code\myWorks\text-recognizer-service\app\predicts\para_text_recognizer_pred.py", line 37, in __init__
+    project_name=project_name, model=model, args=args_config
+  File "C:\Users\ch\Documents\code\code\myWorks\text-recognizer-service\app\services\lit_models\lit_model_builder.py", line 26, in build_lit_model
+    lit_model = lit_model_class.load_from_checkpoint(checkpoint_path=pt_path, args=args, model=model)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\core\saving.py", line 135, in load_from_checkpoint
+    checkpoint = pl_load(checkpoint_path, map_location=lambda storage, loc: storage)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\utilities\cloud_io.py", line 32, in load
+    return torch.load(f, map_location=map_location)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\torch\serialization.py", line 595, in load
+    return _legacy_load(opened_file, map_location, pickle_module, **pickle_load_args)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\torch\serialization.py", line 764, in _legacy_load
+    magic_number = pickle_module.load(f, **pickle_load_args)
+
+Traceback
+
+https://github.com/full-stack-deep-learning/fsdl-text-recognizer-2021-labs/issues/27#issue-869823325
+
+
+
+14.0 M    Total params
+55.955    Total estimated model params size (MB)
+Validation sanity check:   0%|                                                                                                                                | 0/1 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "c:\Users\ch\Documents\code\code\myWorks\text-recognizer-service\app\trains\para_text_recognizer_train.py", line 54, in main
+    trainer_set.tune_fit_test_save(lit_model=lit_model, data=data)
+  File "C:\Users\ch\Documents\code\code\myWorks\text-recognizer-service\app\services\trainers\pl_trainer_set.py", line 84, in tune_fit_test_save
+    self._trainer.fit(lit_model, datamodule=data)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\trainer.py", line 499, in fit
+    self.dispatch()
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\trainer.py", line 546, in dispatch
+    self.accelerator.start_training(self)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\accelerators\accelerator.py", line 73, in start_training
+    self.training_type_plugin.start_training(trainer)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\plugins\training_type\training_type_plugin.py", line 114, in start_training
+    self._results = trainer.run_train()
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\trainer.py", line 607, in run_train
+    self.run_sanity_check(self.lightning_module)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\trainer.py", line 860, in run_sanity_check
+    _, eval_results = self.run_evaluation(max_batches=self.num_sanity_val_batches)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\trainer.py", line 725, in run_evaluation
+    output = self.evaluation_loop.evaluation_step(batch, batch_idx, dataloader_idx)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\evaluation_loop.py", line 166, in evaluation_step
+    output = self.trainer.accelerator.validation_step(args)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\accelerators\accelerator.py", line 177, in validation_step
+    return self.training_type_plugin.validation_step(*args)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\plugins\training_type\dp.py", line 81, in validation_step
+    return self.model(*args, **kwargs)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\torch\nn\modules\module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\torch\nn\parallel\data_parallel.py", line 162, in forward
+    return self.gather(outputs, self.output_device)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\torch\nn\parallel\data_parallel.py", line 174, in gather
+    return gather(outputs, output_device, dim=self.dim)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\torch\nn\parallel\scatter_gather.py", line 68, in gather
+    res = gather_map(outputs)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\torch\nn\parallel\scatter_gather.py", line 62, in gather_map
+    for k in out))
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\torch\nn\parallel\scatter_gather.py", line 62, in <genexpr>
+    for k in out))
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\torch\nn\parallel\scatter_gather.py", line 63, in gather_map
+    return type(out)(map(gather_map, zip(*outputs)))
+TypeError: zip argument #1 must support iteration
+https://github.com/PyTorchLightning/pytorch-lightning/issues/4353
+
+metrics fail on dp
+
+
+Traceback (most recent call last):
+  File "c:\Users\ch\Documents\code\code\myWorks\text-recognizer-service\app\trains\para_text_recognizer_train.py", line 54, in main
+    trainer_set.tune_fit_test_save(lit_model=lit_model, data=data)
+  File "C:\Users\ch\Documents\code\code\myWorks\text-recognizer-service\app\services\trainers\pl_trainer_set.py", line 84, in tune_fit_test_save
+    self._trainer.fit(lit_model, datamodule=data)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\trainer.py", line 496, in fit
+    self.pre_dispatch()
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\trainer\trainer.py", line 525, in pre_dispatch
+    self.accelerator.pre_dispatch()
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\accelerators\accelerator.py", line 83, in pre_dispatch
+    self.training_type_plugin.pre_dispatch()
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\plugins\training_type\ddp.py", line 243, in pre_dispatch
+    self.init_ddp_connection(self.global_rank, self.world_size)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\pytorch_lightning\plugins\training_type\ddp.py", line 226, in init_ddp_connection
+    torch_distrib.init_process_group(self.torch_distributed_backend, rank=global_rank, world_size=world_size)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\torch\distributed\distributed_c10d.py", line 434, in init_process_group
+    init_method, rank, world_size, timeout=timeout
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\torch\distributed\rendezvous.py", line 82, in rendezvous
+    raise RuntimeError("No rendezvous handler for {}://".format(result.scheme))
+RuntimeError: No rendezvous handler for env://
+
+ddp fail in wind10

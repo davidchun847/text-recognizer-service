@@ -1,7 +1,7 @@
 # Data
 /data/
 /app/wandb/
-!/data/raw
+!/data/raw/
 
 # Logs
 /workspace

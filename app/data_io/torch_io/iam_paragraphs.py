@@ -34,7 +34,7 @@ class IAMParagraphs(DataModuleBase):
 
     def __init__(self, args: argparse.Namespace = None):
         super().__init__(args)
-        self.augment = self.args.get("augment_data", "true").lower() == "true"
+        self.augment = self.args.get("augment_data")
 
         mapping = EMNIST().mapping
         assert mapping is not None

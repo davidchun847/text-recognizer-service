@@ -22,7 +22,7 @@ def create_train_dir(project_name):
 def create_predict_dir(project_name):
     assert isinstance(project_name, str)
     name_sub = pathutils.create_now_name()
-    dir_project = Path(mypath.dir_workspace, "predictss", project_name, name_sub)
+    dir_project = Path(mypath.dir_workspace, "predicts", project_name, name_sub)
     pathutils.create_dir(dir_project)
     return dir_project
 

@@ -1,4 +1,4 @@
-from .utils import *
+from .torch_io_utils import *
 from .dataset_base import DatasetBase
 from .data_module_base import DataModuleBase
 from .mnist import MNIST

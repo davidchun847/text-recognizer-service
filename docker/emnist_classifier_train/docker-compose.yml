@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  train:
+    build:
+      context: .
+      dockerfile: train/Dockerfile
+    volumes:
+      - ../../app:/src
+      - ../../data:/data
+      - ../../workspace:/workspace
+      - ../../wandb:/wandb
+    environment:
+      - NODE_ENV=development
+    # runtime: nvidia
+    command: [ "python", "/src/trains/emnist_classifier_train.py" ]

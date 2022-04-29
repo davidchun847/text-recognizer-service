@@ -6,8 +6,8 @@ if __name__ == "__main__":
     from pathlib import Path
     import os, sys
 
-    sys.path.append(os.path.abspath(Path(__file__).resolve().parents[1]))
-    print(os.path.abspath(Path(__file__).resolve().parents[1]))
+    sys.path.append(os.path.abspath(Path(__file__).resolve().parents[2]))
+    print(os.path.abspath(Path(__file__).resolve().parents[2]))
 
 
 from utils import class_utils
@@ -20,7 +20,9 @@ def create_base_parser():
 
     # Add Trainer specific arguments, such as --max_epochs, --gpus, --precision
     trainer_parser = pl.Trainer.add_argparse_args(parser)
-    trainer_parser._action_groups[1].title = "Trainer Args"  # pylint: disable=protected-access
+    trainer_parser._action_groups[
+        1
+    ].title = "Trainer Args"  # pylint: disable=protected-access
     parser = argparse.ArgumentParser(add_help=False, parents=[trainer_parser])
 
     # Basic arguments
@@ -31,8 +33,12 @@ def create_base_parser():
 
     # Get the data and model classes, so that we can add their specific arguments
     temp_args, _ = parser.parse_known_args()
-    data_class = class_utils.import_class(f"text_recognizer.data.{temp_args.data_class}")
-    model_class = class_utils.import_class(f"text_recognizer.models.{temp_args.model_class}")
+    data_class = class_utils.import_class(
+        f"text_recognizer.data.{temp_args.data_class}"
+    )
+    model_class = class_utils.import_class(
+        f"text_recognizer.models.{temp_args.model_class}"
+    )
 
     # Get data, model, and LitModel specific arguments
     data_group = parser.add_argument_group("Data Args")

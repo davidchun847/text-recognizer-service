@@ -10,9 +10,9 @@ This project is text recognizer service to predict a text from an handwriting im
 
 # Contributions:
 - Code refactored to reduce the duplicate codes <br/>
-- Make is works in Windows 10 as well <br/>
-- Add docker compose to run without cmd options (WORKING) <br/>
-- Add BentoML service (WORK_TO_DO)
+- Make it works in Windows 10 as well <br/>
+- Add docker compose to run train and service without cmd options (WORKING) <br/>
+- Add BentoML service (WORK_TO_DO) <br/>
 
 # Reference
-[1] (Base code) <https://github.com/full-stack-deep-learning/fsdl-text-recognizer-2021-labs>
+[1] (Base code) <https://github.com/full-stack-deep-learning/fsdl-text-recognizer-2021-labs> <br/>

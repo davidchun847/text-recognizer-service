@@ -1,5 +1,6 @@
 # Data
 /data/
+/app/wandb/
 !/data/raw
 
 # Logs
@@ -16,6 +17,9 @@ node_modules
 __pycache__
 .pytest_cache
 .ipynb_checkpoints
+
+# Memo
+/setup_memo.txt
 
 # Distribution / packaging
 .Python
