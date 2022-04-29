@@ -16,6 +16,7 @@ class EMNIST_Classifier_Predictor(Pl_Predictor):
     def __init__(self, project_name):
         super().__init__(project_name)
 
+    @property
     def transform(self):
         return self._transform
 
@@ -34,12 +35,11 @@ class EMNIST_Classifier_Predictor(Pl_Predictor):
         image_tensor = self.transform(image_pil)
 
         y_pred = self._model_script(image_tensor.unsqueeze(axis=0))[0]
-        pred_str = self.convert_y_label_to_string(
-            y=y_pred, mapping=self.data.mapping, tokens_ignore=self.tokens_ignore
-        )
+        pred_str = self.convert_y_pred2str(y=y_pred, mapping=self.data.mapping)
 
         return pred_str
 
     @classmethod
-    def convert_y_label_to_string(cls, y: torch.Tensor, mapping: Sequence[str]) -> str:
-        return mapping[y]
+    def convert_y_pred2str(cls, y: torch.Tensor, mapping: Sequence[str]) -> str:
+        pred = y.argmax(-1)
+        return mapping[pred]

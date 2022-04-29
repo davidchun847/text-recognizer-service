@@ -6,7 +6,7 @@ from services.predictors.predictor_builder_base import Predictor_Builder_Base
 from data_io.torch_io import DataModuleBase
 
 
-class EMNIST_Classifier_Predictor(Predictor_Builder_Base):
+class EMNIST_Classifier_Predictor_Builder(Predictor_Builder_Base):
     @classmethod
     def build_predictor(cls, project_name, data, lit_model, logger_py, args_config):
         predictor = super().build_predictor(

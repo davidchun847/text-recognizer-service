@@ -137,3 +137,7 @@ Traceback (most recent call last):
 RuntimeError: No rendezvous handler for env://
 
 ddp fail in wind10
+
+num_workers 24 make stuck in validation check
+
+cross entropy loss takes long value
