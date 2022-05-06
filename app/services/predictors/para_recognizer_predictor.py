@@ -9,7 +9,7 @@ from services.lit_models.text_recognizer_builder import Lit_Text_Recognizer_Buil
 from services.predictors.pl_predictor import Pl_Predictor
 
 
-class Text_Recognizer_Predictor(Pl_Predictor):
+class Para_Recognizer_Predictor(Pl_Predictor):
     """Class to recognize paragraph text in an image."""
 
     def __init__(self, project_name):

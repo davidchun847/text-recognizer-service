@@ -23,8 +23,8 @@ from services.trainers.text_recognizer_trainer_set_builder import (
 )
 
 # In order to ensure reproducible experiments, we must set random seeds.
-np.random.seed(42)
-torch.manual_seed(42)
+# np.random.seed(42)
+# torch.manual_seed(42)
 
 
 def main():

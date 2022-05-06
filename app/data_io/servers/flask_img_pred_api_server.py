@@ -1,6 +1,7 @@
 """Flask web server serving text_recognizer predictions."""
 import os
 import logging
+import json
 
 from flask import Flask, request, jsonify
 from flask_classful import FlaskView, route
@@ -17,53 +18,31 @@ if __name__ == "__main__":
 from data_io import img_io
 
 
-class ImgPredApiServer(FlaskView):
+app = Flask(__name__)
 
-    app = Flask(__name__)
+class Flask_Img_Pred_Api_Server(FlaskView):
 
-    def __init__(self):
-        super().__init__()
-        self._service_pred = None
+    def run(self, host, port, debug):
+        assert isinstance(app, Flask)
+        app.run(host=host, port=port, debug=debug)
 
-    @property
-    def service_pred(self):
-        return self._service_pred
-
-    @service_pred.setter
-    def service_pred(self, service_pred):
-        assert hasattr(service_pred, "predict")
-        assert callable(getattr(service_pred, "predict"))
-        self._service_pred = service_pred
-
-    def run(self):
-        assert isinstance(self.app, Flask)
-        self.app.run()
-
-    @route("/")
+    @route("/", methods=["GET"])
     def index(self):
         """Provide simple health check route."""
         return "Hello, world!"
 
     @route("/v1/predict", methods=["GET", "POST"])
     def predict(self):
-        """Provide main prediction API route. Responds to both GET and POST requests."""
-        image = self._load_image()
-        assert callable(getattr(self._service_pred, "predict"))
-        pred = self._service_pred.predict(image)
-        image_stat = ImageStat.Stat(image)
-        logging.info("METRIC image_mean_intensity {}".format(image_stat.mean[0]))
-        logging.info("METRIC image_area {}".format(image.size[0] * image.size[1]))
-        logging.info("METRIC pred_length {}".format(len(pred)))
-        logging.info("pred {}".format(pred))
-        return jsonify({"pred": str(pred)})
+        pass
 
-    @staticmethod
+    @classmethod
     def _load_image(cls):
         if request.method == "POST":
             data = request.get_json()
+            data_d = json.loads(data)
             if data is None:
                 return "no json received"
-            return img_io.decode_b64_2_img(data["image"], grayscale=True)
+            return img_io.decode_b64_2_img_urlsafe(data_d["image"], grayscale=True)
         if request.method == "GET":
             image_url = request.args.get("image_url")
             if image_url is None:
@@ -73,11 +52,8 @@ class ImgPredApiServer(FlaskView):
         raise ValueError("Unsupported HTTP method")
 
 
-ImgPredApiServer.register(ImgPredApiServer.app, route_base="/")
-
-
 def main():
-    server = ImgPredApiServer()
+    server = Flask_Img_Pred_Api_Server()
     server.run(host="0.0.0.0", port=8000, debug=False)  # nosec
 
 

@@ -42,11 +42,11 @@ class Text_Recognizer_Pred_Service(Pred_Service_Base):
 
 if __name__ == "__main__":
 
-    from services.predictors.text_recognizer_predictor_builder import (
-        Text_Recognizer_Predictor_Builder,
+    from services.predictors.para_recognizer_predictor_builder import (
+        Para_Recognizer_Predictor_Builder,
     )
-    from services.predictors.text_recognizer_predictor import (
-        Text_Recognizer_Predictor,
+    from services.predictors.para_recognizer_predictor import (
+        Para_Recognizer_Predictor,
     )
     from services.predictors.emnist_classifier_predictor_builder import (
         EMNIST_Classifier_Predictor_Builder,
@@ -56,7 +56,7 @@ if __name__ == "__main__":
     )
 
     project_name = "para_text_recognizer"
-    project_name = "emnist_classifier"
+    # project_name = "emnist_classifier"
     dir_workspace, logger_py = workspace_io.create_workspace_predict(project_name)
     args_config = config_io.load_config_args_predict(project_name)
     logger_io.write_run_start(logger_py, project_name, dir_workspace, args_config)
@@ -68,7 +68,7 @@ if __name__ == "__main__":
             serivce = Text_Recognizer_Pred_Service(
                 project_name,
                 logger_py=logger_py,
-                predictor_builder_cls=Text_Recognizer_Predictor_Builder,
+                predictor_builder_cls=Para_Recognizer_Predictor_Builder,
                 args_config=args_config,
             )
             data_dir = pathutils.get_data_proc_dir("iam_paragraphs")

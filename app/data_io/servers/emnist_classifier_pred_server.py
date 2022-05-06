@@ -13,6 +13,8 @@ if __name__ == "__main__":
     sys.path.append(str(dir_app))
     print(dir_app)
 
+
+from data_io import img_io
 from data_io import workspace_io
 from data_io import config_io
 from data_io import logger_io
@@ -20,8 +22,8 @@ from services.predicts.text_recognizer_pred_service import (
     Text_Recognizer_Pred_Service,
 )
 from data_io.servers.flask_img_pred_api_server import Flask_Img_Pred_Api_Server
-from services.predictors.para_recognizer_predictor_builder import (
-    Para_Recognizer_Predictor_Builder,
+from services.predictors.emnist_classifier_predictor_builder import (
+    EMNIST_Classifier_Predictor_Builder,
 )
 
 
@@ -34,7 +36,7 @@ try:
     service_pred = Text_Recognizer_Pred_Service(
         project_name,
         logger_py=logger_py,
-        predictor_builder_cls=Para_Recognizer_Predictor_Builder,
+        predictor_builder_cls=EMNIST_Classifier_Predictor_Builder,
         args_config=args_config,
     )
 except Exception as e:
@@ -42,7 +44,8 @@ except Exception as e:
 
 app = Flask(__name__)
 
-class Para_Recognizer_Pred_Server(Flask_Img_Pred_Api_Server):
+class EMNIST_Classifier_Pred_Server(Flask_Img_Pred_Api_Server):
+
 
     def run(self, host, port, debug):
         assert isinstance(app, Flask)
@@ -52,7 +55,8 @@ class Para_Recognizer_Pred_Server(Flask_Img_Pred_Api_Server):
     @route("/", methods=["GET"])
     def index(self):
         """Provide simple health check route."""
-        return "Hello, world!, para_recognizer_pred_server"
+        return "Hello, world!, emnist_classifier_pred_server"
+
 
     @route("/v1/predict", methods=["GET", "POST"])
     def predict(self):
@@ -69,12 +73,14 @@ class Para_Recognizer_Pred_Server(Flask_Img_Pred_Api_Server):
         return jsonify({"pred": str(pred)})
 
 
-Para_Recognizer_Pred_Server.register(app, route_base='/')
+EMNIST_Classifier_Pred_Server.register(app, route_base='/')
+
+
 
 
 def main():
     try:
-        server = Para_Recognizer_Pred_Server()
+        server = EMNIST_Classifier_Pred_Server()
         server.run(host="127.0.0.1", port=8000, debug=False)  # nosec
     except Exception as e:
         logger_io.write_err_log(logger_py)

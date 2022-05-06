@@ -11,7 +11,7 @@ This project is text recognizer service to predict a text from an handwriting im
 # Contributions:
 - Code refactored to reduce the duplicate codes <br/>
 - Make it works in Windows 10 as well <br/>
-- Add docker compose to run train and service without cmd options (WORKING) <br/>
+- Add docker compose to run train and service without cmd options <br/>
 - Add BentoML service (WORK_TO_DO) <br/>
 
 # Reference

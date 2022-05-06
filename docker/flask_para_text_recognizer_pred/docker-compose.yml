@@ -12,4 +12,8 @@ services:
       - NODE_ENV=development
     ports:
       - "8000:8000"
-    command: [ "python", "/src/data_io/servers/flask_para_recognizer_pred_server.py" ]
+    command:
+      [
+        "python",
+        "/src/data_io/servers/para_recognizer_pred_server.py"
+      ]

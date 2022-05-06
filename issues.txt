@@ -141,3 +141,14 @@ ddp fail in wind10
 num_workers 24 make stuck in validation check
 
 cross entropy loss takes long value
+
+
+  File "c:\Users\ch\Documents\code\code\myWorks\text-recognizer-service\app\data_io\servers\para_recognizer_pred_server.py", line 43, in main
+    server = ImgPredApiServer(__name__)
+  File "C:\Users\ch\Documents\code\code\myWorks\text-recognizer-service\app\data_io\servers\flask_img_pred_api_server.py", line 25, in __init__
+    ImgPredApiServer.register(self.app, route_base="/")
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\flask_classful.py", line 138, in register
+    proxy = cls.make_proxy_method(name)
+  File "C:\Users\ch\anaconda3\envs\py37g\lib\site-packages\flask_classful.py", line 230, in make_proxy_method
+    i = cls()
+TypeError: __init__() missing 1 required positional argument: 'name'
