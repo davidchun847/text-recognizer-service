@@ -40,12 +40,13 @@ def request_get(url_api):
 
 def main():
     url_api = "http://127.0.0.1:8000"
-    path_img = pathutils.get_data_proc_dir("iam_paragraphs") / "trainval" / "a01-077.png"
+    path_dir = pathutils.get_data_dl_dir("emnist") / "samples"
+    path_imgs = path_dir.glob("*.png")
     res = request_get(url_api)
-    print(res.status_code)
-    res = request_predict(url_api, path_img)
-    print(res.status_code)
-    print(res.json())
+    for path_img in path_imgs:
+        res = request_predict(url_api, path_img)
+        print(res.status_code)
+        print(res.json())
 
 
 if __name__ == "__main__":

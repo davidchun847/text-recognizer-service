@@ -56,7 +56,7 @@ if __name__ == "__main__":
     )
 
     project_name = "para_text_recognizer"
-    # project_name = "emnist_classifier"
+    project_name = "emnist_classifier"
     dir_workspace, logger_py = workspace_io.create_workspace_predict(project_name)
     args_config = config_io.load_config_args_predict(project_name)
     logger_io.write_run_start(logger_py, project_name, dir_workspace, args_config)

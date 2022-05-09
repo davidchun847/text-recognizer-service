@@ -15,7 +15,7 @@ services:
     command:
       [
         "python",
-        "/src/data_io/servers/para_recognizer_pred_server.py"
+        "/src/data_io/servers/emnist_classifier_pred_server.py"
       ]
   api_client:
     build:
@@ -31,4 +31,4 @@ services:
       - -c
       - |
         /wait-for-it.sh api_server:8000 -t 10
-        python /src/data_io/clients/para_recognizer_pred_client.py
+        python /src/data_io/clients/emnist_classifier_pred_client.py
